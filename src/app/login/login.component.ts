@@ -1,20 +1,22 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Route,Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private router:Router) { }
-  login(){
-    this.router.navigate(['/register'])
-  }
+  forms:FormGroup
+  constructor() { }
 
   ngOnInit(): void {
+    this.forms=new FormGroup({
+      'EmailId':new FormControl('',Validators.required),
+      'Password':new FormControl('',Validators.required),
+      'RepeatPassword':new FormControl('',Validators.required)
+      
+    })
+    
   }
 
 }
