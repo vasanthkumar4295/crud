@@ -1,0 +1,23 @@
+<p>directive</p>
+<p> structural directive</p>
+<h1>ng <iframe src="" frameborder="0"></iframe></h1>
+<div *ngif ="book">
+    Book variable exist.
+    </div>
+<h1>ngelse</h1>
+
+    <div *ngif ="books;then bookAvailable; else nobookAvailable">
+        no Book variable exist.
+
+        </div>
+        <ng-template #nobookAvailable>
+            no book .
+            </ng-template>
+<p *ngif="true">
+expreesion is rrue and ngif is true,
+this paragraph is the dom.
+</p>
+<p *ngif="false">
+    Experssion is false and ngif is false.
+    this paragraph is not in the dom.
+</p>
