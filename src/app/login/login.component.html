@@ -7,11 +7,15 @@
       <hr>
   
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required formControlName="EmailId" >
-      <div class="error" *ngIf="forms.get('EmailId').invalid">Name is required! </div><br>
+      <input type="email" placeholder="Enter Email" name="email" required formControlName="EmailId" class="invalid-feedback" >
+      
+      <div class="error" *ngIf="forms.get('EmailId').invalid &&forms.get('EmailId')">email is required
+       </div><br>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required formControlName="Password" >
-      <div class="error" *ngIf="forms.get('Password').invalid">password is required</div><br>
+      <input type="password" placeholder="Enter Password" name="Password" required.pattern formControlName="Password" class="invalid-feedback" >
+      <div class="error" *ngIf="forms.get('Password').invalid &&forms.get('PassWord')">password is required
+
+      </div><br>
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" required ><br>
       
@@ -23,7 +27,8 @@
   
       <div class="clearfix">
         
-        <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="submit" class="signupbtn" >Sign Up</button>
       </div>
     </div>
   </form>
+  
