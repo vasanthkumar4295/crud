@@ -4,9 +4,13 @@ import{HttpClient}from '@angular/common/http'
   providedIn: 'root'
 })
 export class CommonserviceService {
+URL="https://jsonplaceholder.typicode.com/todos";
 
   constructor(private http:HttpClient) { }
-  GetData(){
-    return this.http.get("https://jsonplaceholder.typicode.com/todos");
+  
+    myData(){
+      return this.http.get(this.URL)
+      console.log('inside the data',Response)
+    }
   }
-}
+

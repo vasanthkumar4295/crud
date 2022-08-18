@@ -1,1 +1,20 @@
-<p>main works!</p>
+
+<button type="button" class="btn btn-primary"(click)="showStyle">primary</button>
+<div class="card" *ngIf="showFlag">
+    <div clas="card body"> card body</div>
+    <h1>HOw to call Api in Angular</h1>
+    <table class="card">
+    <tr>
+        
+        <th>id</th>
+        <th>type</th>
+        
+        </tr>
+        <tr  *ngFor="let data of arrData">
+            <td>{{data.id}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

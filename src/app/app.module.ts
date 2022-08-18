@@ -13,21 +13,18 @@ import { DirectiveComponent } from './directive/directive.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonserviceService } from './commonservice.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
     HomeComponent,
-    
-  
     RegisterComponent,
-       MainComponent,
-       DirectiveComponent,
-       LoginComponent,
-      
-        ],
+    MainComponent,
+    DirectiveComponent,
+    LoginComponent,
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,HttpClientModule,

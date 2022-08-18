@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonserviceService } from '../commonservice.service';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
+  showFlag=false;
+  arrData:any;
 
-  constructor() { }
 
+  constructor(private dataservice:CommonserviceService) { }
+showStyle(){
+  
+    this.showFlag=true;
+  
+}
   ngOnInit(): void {
+    this.dataservice.myData().subscribe(Response=>{
+      console.log('insides the data', Response)
+      
+    })
   }
 
 }
