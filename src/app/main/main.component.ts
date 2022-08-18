@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef} from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
-
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -9,19 +9,25 @@ import { CommonserviceService } from '../commonservice.service';
 export class MainComponent implements OnInit {
   showFlag=false;
   arrData:any;
-
-
-  constructor(private dataservice:CommonserviceService) { }
-showStyle(){
-  
-    this.showFlag=true;
-  
+   editData:{}
+   modalRef: BsModalRef;
+  constructor(private dataservice:CommonserviceService,private modalService: BsModalService) { }
+  openModal(template: TemplateRef<any>,data:any) {
+    
+    this.modalRef = this.modalService.show(template);
+    console.log(data)
+ }
+showStyle(){  
+    this.showFlag=true;  
 }
+
   ngOnInit(): void {
     this.dataservice.myData().subscribe(Response=>{
-      console.log('insides the data', Response)
+      this.arrData = Response
+      console.log('insides the data', this.arrData)
       
     })
   }
+  
 
 }

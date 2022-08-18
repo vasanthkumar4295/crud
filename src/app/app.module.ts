@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonserviceService } from './commonservice.service';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -27,10 +28,12 @@ import { CommonserviceService } from './commonservice.service';
       ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,
-    ReactiveFormsModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ModalModule
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
   
 })

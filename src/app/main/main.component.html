@@ -1,20 +1,44 @@
 
-<button type="button" class="btn btn-primary"(click)="showStyle">primary</button>
-<div class="card" *ngIf="showFlag">
-    <div clas="card body"> card body</div>
-    <h1>HOw to call Api in Angular</h1>
-    <table class="card">
+<button type="button" class="btn btn-primary"(click)="showStyle()">primary</button>
+<div *ngIf="showFlag">
+    <div class="card body"> this is some text data</div>
+    
+   
+   
+   <div class="container">
+
+    <table class="table" border="4">
     <tr>
         
-        <th>id</th>
-        <th>type</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>UserId</th>
+        <th>Actions</th>
         
         </tr>
-        <tr  *ngFor="let data of arrData">
+        <tr *ngFor="let data of arrData" >
             <td>{{data.id}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{data.title}}</td>
+            <td>{{data.userId}}</td>
+            <td>{{data.id}}</td>
+            <td><button (click)="openModal(template,data) ">EDIT</button></td><br>
+            <td><button (click)="openModel(template,data)">Delete</button></td>
+
         </tr>
     </table>
-</div>
+
+
+    <ng-template #template>
+        <div class="modal-header">
+           <h4 class="modal-title pull-left">Modal</h4>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">×</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           This is a sample modal dialog box.
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+        </div>
+     </ng-template>

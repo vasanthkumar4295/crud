@@ -10,7 +10,7 @@ URL="https://jsonplaceholder.typicode.com/todos";
   
     myData(){
       return this.http.get(this.URL)
-      console.log('inside the data',Response)
+      
     }
   }
 
