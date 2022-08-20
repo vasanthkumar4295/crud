@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route,Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,7 +8,10 @@ import { Route,Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 forms:FormGroup
-  constructor(private router:Router) { }
+  constructor(private router:Router,private activateRouter:ActivatedRoute  ) { 
+    const data = this.router.getCurrentNavigation()?.extras?.state?.['hello']
+    console.log('inside the data',data)
+  }
 register(){
   this.router.navigate(['/login'])
   }
@@ -18,8 +21,13 @@ register(){
       'Username':new FormControl('',Validators.required),
       'Password':new FormControl('',Validators.required)
       
-    })
-    
+    });
+    this.activateRouter
+      .queryParams
+      .subscribe(params => {
+        // Defaults to 0 if no query param provided.
+        console.log('inside the params', params)
+      });
   }
 
 }

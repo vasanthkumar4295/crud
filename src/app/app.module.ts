@@ -17,6 +17,9 @@ import { CommonserviceService } from './commonservice.service';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,7 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     MainComponent,
     DirectiveComponent,
     LoginComponent,
+  
       ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     HttpClientModule,
     ReactiveFormsModule,
     ModalModule
+   
+
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent]

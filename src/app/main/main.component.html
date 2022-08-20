@@ -22,13 +22,19 @@
             <td>{{data.userId}}</td>
             <td>{{data.id}}</td>
             <td><button (click)="openModal(template,data) ">EDIT</button></td><br>
-            <td><button (click)="openModel(template,data)">Delete</button></td>
-
+            <td><button (click)="deletemodel(data,id)">Delete</button></td>
+            <td><button (click)="querymodel(data,id)">query</button></td>
         </tr>
-    </table>
-
-
-    <ng-template #template>
+    </table><br>
+    
+    <form >
+      <p> Enter your id   :
+      <input type="text" placeholder="Enter id" name="Id"  ><br></p>
+      <p>Enter your title: 
+      <input type="text" placeholder="update" name="title"><br></p>
+      <button (click)="openModal(template,data)">EDIT</button>
+    </form><br>
+      <ng-template #template>
         <div class="modal-header">
            <h4 class="modal-title pull-left">Modal</h4>
            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

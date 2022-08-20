@@ -1,6 +1,9 @@
 import { Component, OnInit, TemplateRef} from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -11,12 +14,16 @@ export class MainComponent implements OnInit {
   arrData:any;
    editData:{}
    modalRef: BsModalRef;
-  constructor(private dataservice:CommonserviceService,private modalService: BsModalService) { }
+  constructor(private dataservice:CommonserviceService,private modalService: BsModalService,
+    private route:Router) { }
+  
   openModal(template: TemplateRef<any>,data:any) {
-    
+   
     this.modalRef = this.modalService.show(template);
     console.log(data)
- }
+    }
+
+ 
 showStyle(){  
     this.showFlag=true;  
 }
@@ -26,8 +33,14 @@ showStyle(){
       this.arrData = Response
       console.log('insides the data', this.arrData)
       
-    })
+    });
+
+  }
+  deletemodel():void{
+    this.route.navigateByUrl('/register', { state: { hello: 'url routing navigation' } });
+  }
+  querymodel():void{
+    this.route.navigate(['/register'], { queryParams: { serviceId: 22} });
   }
   
-
 }
