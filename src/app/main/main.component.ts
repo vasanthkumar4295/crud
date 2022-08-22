@@ -14,6 +14,8 @@ export class MainComponent implements OnInit {
   arrData:any;
    editData:{}
    modalRef: BsModalRef;
+   currentItem:any;
+
   constructor(private dataservice:CommonserviceService,private modalService: BsModalService,
     private route:Router) { }
   
@@ -22,7 +24,7 @@ export class MainComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
     console.log(data)
     }
-
+ 
  
 showStyle(){  
     this.showFlag=true;  
@@ -34,6 +36,8 @@ showStyle(){
       console.log('insides the data', this.arrData)
       
     });
+    localStorage.setItem('SeesionUser','vasanth') 
+    this.currentItem="hello world"
 
   }
   deletemodel():void{
@@ -42,5 +46,10 @@ showStyle(){
   querymodel():void{
     this.route.navigate(['/register'], { queryParams: { serviceId: 22} });
   }
+  addItem(data:any){
+    console.log('data come from ',data)
+  }
+  
+
   
 }

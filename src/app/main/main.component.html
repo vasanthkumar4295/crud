@@ -13,7 +13,7 @@
         <th>Id</th>
         <th>Title</th>
         <th>UserId</th>
-        <th>Actions</th>
+        
         
         </tr>
         <tr *ngFor="let data of arrData" >
@@ -27,6 +27,7 @@
         </tr>
     </table><br>
     
+    <app-dashboard [item]="currentItem" (newItemEvent)="addItem($event)"  ></app-dashboard>
     <form >
       <p> Enter your id   :
       <input type="text" placeholder="Enter id" name="Id"  ><br></p>

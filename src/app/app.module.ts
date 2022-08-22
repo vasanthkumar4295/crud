@@ -15,6 +15,13 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonserviceService } from './commonservice.service';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthguardService } from './authguard.service';
+import { HeadersInterceptor } from './headers.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
+
 
 
 
@@ -28,6 +35,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     MainComponent,
     DirectiveComponent,
     LoginComponent,
+    DashboardComponent,
+    
   
       ],
   imports: [
@@ -35,11 +44,21 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ModalModule
+    ModalModule,
+
+    
    
 
   ],
-  providers: [BsModalService],
+  providers: [BsModalService,AuthguardService,{
+    
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeadersInterceptor,
+      multi: true
+  } ,
+  
+  ],
+  
   bootstrap: [AppComponent]
   
 })
