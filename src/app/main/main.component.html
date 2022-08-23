@@ -21,31 +21,16 @@
             <td>{{data.title}}</td>
             <td>{{data.userId}}</td>
             <td>{{data.id}}</td>
-            <td><button (click)="openModal(template,data) ">EDIT</button></td><br>
+            <td><button (click)="openModal(data) ">EDIT</button></td><br>
             <td><button (click)="deletemodel(data,id)">Delete</button></td>
             <td><button (click)="querymodel(data,id)">query</button></td>
         </tr>
     </table><br>
     
     <app-dashboard [item]="currentItem" (newItemEvent)="addItem($event)"  ></app-dashboard>
-    <form >
-      <p> Enter your id   :
-      <input type="text" placeholder="Enter id" name="Id"  ><br></p>
-      <p>Enter your title: 
-      <input type="text" placeholder="update" name="title"><br></p>
-      <button (click)="openModal(template,data)">EDIT</button>
-    </form><br>
-      <ng-template #template>
-        <div class="modal-header">
-           <h4 class="modal-title pull-left">Modal</h4>
-           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-              <span aria-hidden="true">×</span>
-           </button>
-        </div>
-        <div class="modal-body">
-           This is a sample modal dialog box.
-        </div>
-        <div class="modal-footer">
-           <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
-        </div>
-     </ng-template>
+    <form [fromGroup]="formdata" onClickSubmit=(formdata.value) >
+        <p> Enter your id   :
+       <input type="text" placeholder="Enter id" name="id" class="form-Control" formcontrol="id"[value]="id"><br></p>
+        <p>Enter your title:
+        <input type="text" placeholder="update" name="title" class="form-Control" formcontrol="title"[value]="title"><br></p>
+       <button type="button " class="btn btn-primary" (click)="updateData">Update</button></form>

@@ -1,7 +1,9 @@
 import { Component, OnInit, TemplateRef} from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 
 @Component({
@@ -15,14 +17,22 @@ export class MainComponent implements OnInit {
    editData:{}
    modalRef: BsModalRef;
    currentItem:any;
+   id:number
+   title:string
+   formdata:FormGroup
+   
 
   constructor(private dataservice:CommonserviceService,private modalService: BsModalService,
-    private route:Router) { }
+    private route:Router) {
+      
+     }
   
-  openModal(template: TemplateRef<any>,data:any) {
+  openModal(data:any) {
    
-    this.modalRef = this.modalService.show(template);
+  
     console.log(data)
+   this.id=data.id;
+    this.title=data.title;
     }
  
  
@@ -32,12 +42,27 @@ showStyle(){
 
   ngOnInit(): void {
     this.dataservice.myData().subscribe(Response=>{
-      this.arrData = Response
+     this.arrData = Response
       console.log('insides the data', this.arrData)
       
     });
     localStorage.setItem('SeesionUser','vasanth') 
     this.currentItem="hello world"
+
+    this.formdata=new FormGroup({
+      title:new FormControl (""),
+      id:new FormControl(),
+    
+     });
+  }
+  
+  onClickSubmit(updatedData:object,data:any):void{
+    console.log('inside the data',updatedData)
+    this.dataservice.updateData(updatedData).subscribe(result=>{
+      console.log(data)
+      
+    })
+    this.modalService.hide()
 
   }
   deletemodel():void{
@@ -49,7 +74,4 @@ showStyle(){
   addItem(data:any){
     console.log('data come from ',data)
   }
-  
-
-  
-}
+  }

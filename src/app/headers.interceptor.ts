@@ -13,7 +13,9 @@ import { Token } from '@angular/compiler';
 export class HeadersInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('inside the interceptor')
+    console.log('inside the interceptor',request);
+    
+
     const token = localStorage.getItem('SeesionUser')
     if(!token){
       localStorage.clear()
