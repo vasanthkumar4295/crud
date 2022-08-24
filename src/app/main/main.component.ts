@@ -23,10 +23,13 @@ export class MainComponent implements OnInit {
    
 
   constructor(private dataservice:CommonserviceService,private modalService: BsModalService,
-    private route:Router) {
+    private route:Router,private router:Router) {
       
      }
 
+     main(){
+    this.router.navigate(['/blog/lazy'])
+    }
    ngOnInit(): void {
     this.dataservice.myData().subscribe(Response=>{
     this.arrData = Response

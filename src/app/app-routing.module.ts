@@ -30,6 +30,10 @@ const routes: Routes = [
   component:DirectiveComponent
  },
  {
+  path:'blog', 
+  loadChildren:() => import('./blog/blog.module').then(m=> m.BlogModule )
+},
+ {
   path:'main',
   component:MainComponent,
  },
