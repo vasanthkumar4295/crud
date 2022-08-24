@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef} from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Data, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 
 
@@ -26,13 +26,35 @@ export class MainComponent implements OnInit {
     private route:Router) {
       
      }
-  
+
+   ngOnInit(): void {
+    this.dataservice.myData().subscribe(Response=>{
+    this.arrData = Response
+    // here edit value
+    
+    });
+    this.formdata=new FormGroup({
+      title:new FormControl (""),
+      id:new FormControl(),
+    
+     });
+    localStorage.setItem('SeesionUser','vasanth') 
+    this.currentItem="hello world"
+
+    
+  }
   openModal(data:any) {
-   
-  
     console.log(data)
-   this.id=data.id;
-    this.title=data.title;
+    
+    
+    this.formdata.setValue({
+      title: data.title,
+      id: data.id
+
+    });
+   // this.id=data.id;
+    //this.title=data.title;
+    
     }
  
  
@@ -40,34 +62,25 @@ showStyle(){
     this.showFlag=true;  
 }
 
-  ngOnInit(): void {
-    this.dataservice.myData().subscribe(Response=>{
-     this.arrData = Response
-      console.log('insides the data', this.arrData)
-      
-    });
-    localStorage.setItem('SeesionUser','vasanth') 
-    this.currentItem="hello world"
-
-    this.formdata=new FormGroup({
-      title:new FormControl (""),
-      id:new FormControl(),
-    
-     });
-  }
+deletemodel(id):void{
+  this.dataservice.deletemodel(id).subscribe((result)=>{
+    console.log('result.>',result)
+  });
+}
   
-  onClickSubmit(updatedData:object,data:any):void{
-    console.log('inside the data',updatedData)
-    this.dataservice.updateData(updatedData).subscribe(result=>{
-      console.log(data)
-      
+  onClickSubmit(updatedData:object) {
+   
+    console.log('inside the data',updatedData);
+    this.dataservice.updateData(updatedData).subscribe({
+      next: (result => {
+         console.log(result)
+      })
     })
     this.modalService.hide()
-
   }
-  deletemodel():void{
-    this.route.navigateByUrl('/register', { state: { hello: 'url routing navigation' } });
-  }
+  //deletemodel():void{
+   // this.route.navigateByUrl('/register', { state: { hello: 'url routing navigation' } });
+  //}
   querymodel():void{
     this.route.navigate(['/register'], { queryParams: { serviceId: 22} });
   }

@@ -1,34 +1,44 @@
 import { Injectable, ɵLocaleDataIndex } from '@angular/core';
-import{HttpClient}from '@angular/common/http'
+import{HttpClient}from '@angular/common/http';
+import { Base_URL } from 'src/Utils/constants';
+
+import { JsonPipe } from '@angular/common';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class CommonserviceService {
-URL="https://jsonplaceholder.typicode.com/todos";
 
   constructor(private http:HttpClient) { }
   
     myData(){
-      return this.http.get(this.URL)
+      return this.http.get(Base_URL)
       
     }
     updateData(data:any){
+      console.log(data)
       const body ={
         method:'put',
         body:JSON.stringify({
-          id:1,
+          id:data.id,
           title:data.title,
           body:data.title,
           userId:data.id,
 
         }),
         headers:{
-          'content-type':'application/json; charset',
+          'content-type':'application/json; charset-UTF-8',
           
         },
         
-      }
-      return this.http.put('{BASE-URL}/{data.id}',body)
+      }     
+      return this.http.put(`${Base_URL}/${data.id}`,body)
     }
+    deletemodel(data:any){
+      console.log('delete the data',data);
+      return this.http.delete(`${Base_URL}/${data}`);
+     }
+    
   }
 

@@ -1,9 +1,8 @@
-
 <button type="button" class="btn btn-primary"(click)="showStyle()">primary</button>
-<div *ngIf="showFlag">
-    <div class="card body"> this is some text data</div>
-    
-   
+<div class="card" *ngIf="showFlag">
+    <div class="card body">This is some text within a card body.</div>
+</div>
+
    
    <div class="container">
 
@@ -22,15 +21,17 @@
             <td>{{data.userId}}</td>
             <td>{{data.id}}</td>
             <td><button (click)="openModal(data) ">EDIT</button></td><br>
-            <td><button (click)="deletemodel(data,id)">Delete</button></td>
-            <td><button (click)="querymodel(data,id)">query</button></td>
+           <td> <button (click)="deletemodel(data.id)">Delete</button><td><br>
+            <td><button (click)="querymodel(data.id)">query</button></td>
         </tr>
     </table><br>
+</div>
+<app-dashboard [item]="currentItem" (newItemEvent)="addItem($event)"  ></app-dashboard>
     
-    <app-dashboard [item]="currentItem" (newItemEvent)="addItem($event)"  ></app-dashboard>
-    <form [fromGroup]="formdata" onClickSubmit=(formdata.value) >
-        <p> Enter your id   :
-       <input type="text" placeholder="Enter id" name="id" class="form-Control" formcontrol="id"[value]="id"><br></p>
-        <p>Enter your title:
-        <input type="text" placeholder="update" name="title" class="form-Control" formcontrol="title"[value]="title"><br></p>
-       <button type="button " class="btn btn-primary" (click)="updateData">Update</button></form>
+<form  [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+    <p>Id:
+    <input type="text"  class="form-control" formControlName="id" ><br>
+    <p>Title:
+    <input type="text" class="form-control"  formControlName="title">
+    <button type="submit"  class="btn btn-primary" >Update</button>
+     </form>
